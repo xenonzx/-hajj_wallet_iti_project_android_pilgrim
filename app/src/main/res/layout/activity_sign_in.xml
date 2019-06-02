@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@drawable/background_color"
+        android:layout_height="match_parent"
+        android:id="@+id/constraintLayout2">
+    <TextView
+            android:text="@string/login"
+            android:id="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/card"
+            style="@style/pageTitleStyle"
+            app:layout_constraintVertical_bias="0.1"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="20dp"
+            app:cardCornerRadius="16dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                style="@style/subBackgroundStyle" android:layout_width="365dp" android:layout_height="508dp">
+            <ProgressBar
+                    android:id="@+id/progress"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.766"
+                    app:layout_constraintStart_toStartOf="@+id/checkBox"
+                    app:layout_constraintEnd_toEndOf="@+id/checkBox" style="@style/progressBarStyle"/>
+            <ImageView
+                    android:id="@+id/logo"
+                    android:src="@drawable/wallet_blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/logoImageStyle"/>
+            <EditText
+                    style="@style/InputTextField"
+                    android:hint="@string/username"
+                    android:id="@+id/email"
+                    android:drawableRight="@drawable/email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo"
+                    android:layout_marginTop="40dp"/>
+            <EditText
+                    style="@style/InputTextField"
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:id="@+id/CRNNumber"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/email"/>
+            <CheckBox
+                    android:text="@string/remember_password"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkBox"
+                    app:layout_constraintStart_toStartOf="@+id/CRNNumber"
+                    app:layout_constraintTop_toBottomOf="@+id/CRNNumber"
+                    android:layout_marginTop="16dp"
+            />
+            <Button
+                    android:text="@string/login_to_account"
+                    android:id="@+id/signIn"
+                    android:layout_height="wrap_content"
+                    android:elevation="5dp"
+                    app:layout_constraintStart_toStartOf="@+id/CRNNumber"
+                    app:layout_constraintEnd_toEndOf="@+id/CRNNumber"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox"
+                    android:layout_marginTop="16dp"
+                    style="@style/btnStyle" android:layout_width="0dp"/>
+
+            <TextView
+                    android:text="@string/register"
+                    android:id="@+id/goToRegister"
+                    app:layout_constraintTop_toBottomOf="@+id/signIn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    style="@style/registerStyle"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
