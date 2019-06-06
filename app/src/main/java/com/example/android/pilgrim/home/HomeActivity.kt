@@ -15,9 +15,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.android.pilgrim.R
 import com.example.android.pilgrim.filter.FilterActivity
 import com.example.android.pilgrim.profile.ProfileFragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,11 +28,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
@@ -44,6 +37,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+
+        Log.i(TAG, "oncreate")
 
         var fragment: Fragment = HomeFragment()
         setFragment(fragment, "Home")
@@ -74,9 +69,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_search -> true
             R.id.action_filter -> {
@@ -88,18 +80,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         var fragment: Fragment = HomeFragment()
         var tag = "Home"
 
         when (item.itemId) {
             R.id.nav_home -> {
-                // Handle the camera action
                 fragment = HomeFragment()
                 tag = "Home"
             }
             R.id.nav_profile -> {
-                //TODO add profile fragment
                 fragment = ProfileFragment()
                 tag = "Profile"
             }
@@ -121,7 +110,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == FILTER_REQUEST_CODE) {
-            Log.i(TAG, "OnAcitivyResult")
+            Log.i(TAG, "OnActivityResult")
         }
     }
+
 }

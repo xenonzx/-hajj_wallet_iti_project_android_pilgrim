@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:elevation="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/iv_logo"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="El Bek"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:id="@+id/tv_vendor_name"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/iv_logo"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resturant"
+                app:layout_constraintTop_toBottomOf="@+id/tv_vendor_name"
+                android:id="@+id/tv_type"
+                app:layout_constraintStart_toEndOf="@+id/iv_logo"
+                android:layout_marginStart="8dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 feet away"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_vendor_name"
+                android:id="@+id/tv_distance"/>
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                android:layout_width="wrap_content"
+                android:id="@+id/rb_rating"
+                app:layout_constraintTop_toBottomOf="@+id/tv_distance"
+                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
+                app:srb_starSize="15dp"
+                app:srb_starBorderWidth="0.5"
+                app:srb_numberOfStars="5"
+                app:srb_rating="3"
+                app:srb_starCornerRadius="4"
+                app:srb_stepSize="0.5"
+                app:srb_starsSeparation="0.3dp"
+                app:srb_borderColor="@color/darkBlue"
+                app:srb_fillColor="@color/lightBlue"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

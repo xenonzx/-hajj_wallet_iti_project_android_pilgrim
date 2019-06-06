@@ -53,4 +53,12 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //Rating bar
+    implementation 'com.iarcuschin:simpleratingbar:0.1.5'
+
+
 }

@@ -6,7 +6,9 @@
     <string name="back4app_app_id">8FqS2oYV1aJ3xbRREYQmllFbyQm62y48gWKjyLWQ</string>
     <string name="back4app_client_key">kiNTbjmmaINu4tPyYM8DqXTZWSkycBXDA1IUFLID</string>
     <string name="hajj_wallet">Hajj Wallet</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_filter">Filter</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -35,6 +37,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="profile">Profile</string>
+    <string name="feet_away">feet away</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

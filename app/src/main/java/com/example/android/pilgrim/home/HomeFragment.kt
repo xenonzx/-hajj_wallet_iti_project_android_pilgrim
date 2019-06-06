@@ -1,18 +1,21 @@
 package com.example.android.pilgrim.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.android.pilgrim.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.pilgrim.model.pojo.VendorPreview
+import com.example.android.pilgrim.vendorDetails.VendorDetailsActivity
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
+    private var mAdapter: VendorPrevAdapter? = null
 
     private lateinit var viewModel: HomeViewModel
 
@@ -20,13 +23,24 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        Log.i("home", "home")
+        val view = inflater.inflate(com.example.android.pilgrim.R.layout.fragment_home, container, false)
+
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        view.rv_vendor_prev.layoutManager = LinearLayoutManager(context)
+
+        viewModel.getVendors().observe(this, Observer { vendors ->
+            mAdapter = VendorPrevAdapter(vendors, context) { vendor: VendorPreview, position: Int ->
+                val intent = Intent(context, VendorDetailsActivity::class.java)
+                intent.putExtra("vendor", vendor)
+                startActivity(intent)
+            }
+            view.rv_vendor_prev.adapter = mAdapter
+        })
+
+        return view
     }
 
 }
