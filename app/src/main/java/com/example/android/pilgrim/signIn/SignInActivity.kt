@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.android.pilgrim.R
 import com.example.android.pilgrim.home.HomeActivity
 import com.example.android.pilgrim.signUp.SignUpActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -15,8 +18,6 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SignInActivityViewModel
-    lateinit var sharedPreference: SharedPreferences
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +27,10 @@ class SignInActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(SignInActivityViewModel::class.java)
         signIn.setOnClickListener {
-            //TODO add validation
-            //viewModel.ValidateEmailAndPAssword(username, password)
-            signIn.startAnimation()
-            viewModel.signIn(username.text.toString(), password.text.toString())
+            if (isUserDataValid()) {
+                signIn.startAnimation()
+                viewModel.signIn(username.text.toString(), password.text.toString())
+            }
         }
         goToRegister.setOnClickListener {
             startActivity(Intent(this@SignInActivity, SignUpActivity::class.java))
@@ -37,22 +38,31 @@ class SignInActivity : AppCompatActivity() {
 
         viewModel.response.observe(this, Observer { response ->
 
-            if (response.isSuccessful) {
-                if (remember_me.isChecked)
-                    cacheUserData()
-                else
-                    deCacheUserData()
+            if (response != null) {
+                if (response.isSuccessful) {
+                    if (remember_me.isChecked)
+                        cacheUserData()
+                    else
+                        deCacheUserData()
 
-                startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
-                finish()
+                    startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
+                    finish()
+                } else {
+                    signIn.revertAnimation()
+                    signIn.background = ContextCompat.getDrawable(this, R.drawable.btn_background)
+                    Toast.makeText(this, getString(R.string.wrong_user_data), Toast.LENGTH_SHORT).show()
+                }
             } else {
-                Toast.makeText(this, response.message(), Toast.LENGTH_SHORT).show()
+                //TODO add internet connection check
+                signIn.revertAnimation()
+                signIn.background = ContextCompat.getDrawable(this, R.drawable.btn_background)
+                Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun initializeWithSharedPrefrences() {
-        sharedPreference = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        val sharedPreference = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         val usernameValue = sharedPreference.getString("username", "")
         val passwordValue = sharedPreference.getString("password", "")
 
@@ -64,7 +74,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun cacheUserData() {
-        sharedPreference = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        val sharedPreference = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreference.edit()
         editor.putString("username", username.text.toString())
         editor.putString("password", password.text.toString())
@@ -75,6 +85,21 @@ class SignInActivity : AppCompatActivity() {
         val preferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         preferences.edit().clear().apply()
     }
+
+
+    private fun isUserDataValid(): Boolean {
+        return isFieldValid(username) && isFieldValid(password)
+    }
+
+    private fun isFieldValid(editText: EditText): Boolean {
+        return if (editText.text.toString().isEmpty()) {
+            editText.error = getString(R.string.required_field)
+            editText.requestFocus()
+            false
+        } else
+            true
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

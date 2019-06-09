@@ -51,5 +51,8 @@
     <string name="purchase">Purchase</string>
     <string name="welcome_to">Welcome to</string>
     <string name="no_vendor">No such vendor with this QR code</string>
+    <string name="wrong_user_data">Wrong username or password</string>
+    <string name="required_field">Required field</string>
+    <string name="error">Oops! Something went wrong</string>
 
 </resources>
