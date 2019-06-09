@@ -64,4 +64,8 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.3.0@aar'
     implementation 'com.google.zxing:core:3.2.1'
 
+    //loading button
+    implementation 'br.com.simplepass:loading-button-android:2.1.5'
+
+
 }

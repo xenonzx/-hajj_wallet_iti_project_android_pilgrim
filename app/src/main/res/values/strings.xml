@@ -20,7 +20,7 @@
     <string name="menu_cashOut">Cash Out</string>
     <string name="email_address">Email Address</string>
     <string name="crn_number">CRN Number</string>
-    <string name="remember_password">Remember Password</string>
+    <string name="remember_me">Remember me</string>
     <string name="login_to_account">Login to Account</string>
     <string name="or">or</string>
     <string name="login">Login</string>

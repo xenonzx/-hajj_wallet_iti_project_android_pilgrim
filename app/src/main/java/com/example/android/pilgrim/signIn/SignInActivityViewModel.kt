@@ -1,48 +1,27 @@
 package com.example.android.pilgrim.signIn
 
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
 import android.util.Log
-import android.util.Patterns
-import android.widget.EditText
-import android.widget.ProgressBar
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.pilgrim.home.HomeActivity
-import com.example.android.pilgrim.model.api.Response
-import kotlinx.coroutines.Job
+import com.example.android.pilgrim.model.api.PilgrimApi
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
 
 /**
  * Created by Toka on 2019-05-30.
  */
 class SignInActivityViewModel : ViewModel() {
 
-    lateinit var sharedPreference: SharedPreferences
-
-    private val _response = MutableLiveData<Response>()
-    val response: LiveData<Response>
+    private val _response = MutableLiveData<retrofit2.Response<ResponseBody>>()
+    val response: LiveData<retrofit2.Response<ResponseBody>>
         get() = _response
 
-    // Create a Coroutine scope using a job to be able to cancel when needed
-    private var viewModelJob = Job()
+    /*fun ValidateEmailAndPAssword(username: EditText, password: EditText) {
 
-    // the Coroutine runs using the Main (UI) dispatcher
-    //private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-
-    fun ValidateEmailAndPAssword(username: EditText, CRN: EditText, name: String, pass: String) {
-
-        if (name.isEmpty()) {
+        if (us.isEmpty()) {
             username.error = "Enter Your Email please"
-            username.requestFocus()
-            return
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(name).matches()) {
-            Log.i("check", "Email Address")
-            username.error = "Enter Valid email please"
             username.requestFocus()
             return
         }
@@ -51,56 +30,21 @@ class SignInActivityViewModel : ViewModel() {
             CRN.requestFocus()
             return
         }
-        if (pass.length <= 6) {
-            CRN.error = "Enter CRN > 6 numbers "
-            CRN.requestFocus()
-            return
-        }
-    }
+    }*/
 
-    fun signIn(
-        username: String,
-        CRN: String,
-        context: Context,
-        progress: ProgressBar
-    ) {
-        /*coroutineScope.launch {
-            val accountLogin = service.retrofitService.login(username, CRN)
-            progress.visibility = View.VISIBLE
-            try {
-                val text = accountLogin.await()
-                Log.i("result ", "success of $text")
-                progress.visibility = View.INVISIBLE
-                saveUserNameAndPassword(username, CRN, context)
-                goToHomeActivity(context)
-            } catch (e: Exception) {
-                Log.i("eror", "this is error ${e.message.toString()}")
-                progress.visibility = View.INVISIBLE
-            }
-        }*/
-    }
+    fun signIn(username: String, password: String) {
+        //TODO stop retrofit when viewmodel is closed
+        PilgrimApi.retrofitService.signIn(username, password)
+            .enqueue(object : Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.i("retrofit", "onFailure ${t.message}")
+                }
 
-    private fun saveUserNameAndPassword(username: String, crn: String, context: Context) {
-        sharedPreference = context.getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = sharedPreference.edit()
-        editor.putString("username", username)
-        editor.putString("password", crn)
-        Log.i("loginUSer", "Saved Done ")
-        editor.commit()
-    }
-
-    /**
-     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-     * Retrofit service to stop.
-     */
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
-
-    fun goToHomeActivity(context: Context) {
-        var intent = Intent(context, HomeActivity::class.java)
-        startActivity(context, intent, null)
+                override fun onResponse(call: Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
+                    Log.i("retrofit", "onResponse ${response.body()}")
+                    _response.value = response
+                }
+            })
     }
 
 }
