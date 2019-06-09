@@ -22,7 +22,7 @@
     <string name="crn_number">CRN Number</string>
     <string name="remember_password">Remember Password</string>
     <string name="login_to_account">Login to Account</string>
-    <string name="register">Register?</string>
+    <string name="or">or</string>
     <string name="login">Login</string>
     <string name="sign_up_account">Sign Up Account</string>
     <string name="shop_name">Shop Name</string>
@@ -36,11 +36,20 @@
     <string name="menu_send">Send</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="profile">Profile</string>
+
     <string name="feet_away">feet away</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
+
+    <string name="profile">Profile</string>
+    <string name="qr_scanner">QR Scanner</string>
+
+
+    <string name="scan_vendor_qr">Scan vendor QR code</string>
+    <string name="purchase">Purchase</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="no_vendor">No such vendor with this QR code</string>
 
 </resources>

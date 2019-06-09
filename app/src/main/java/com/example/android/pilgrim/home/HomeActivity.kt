@@ -15,12 +15,15 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.android.pilgrim.R
 import com.example.android.pilgrim.filter.FilterActivity
 import com.example.android.pilgrim.profile.ProfileFragment
+import com.example.android.pilgrim.qrScanner.QrScannerFragment
 import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val FILTER_REQUEST_CODE = 1
     val TAG = "HomeAcitivity"
+
+    //TODO fix rotation bug
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +95,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = ProfileFragment()
                 tag = "Profile"
             }
+            R.id.nav_qr_scanner -> {
+                fragment = QrScannerFragment()
+                tag = "Qr Scanner"
+            }
         }
 
         setFragment(fragment, tag)
@@ -109,8 +116,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == FILTER_REQUEST_CODE) {
-            Log.i(TAG, "OnActivityResult")
+
+        when (requestCode) {
+            FILTER_REQUEST_CODE -> {
+                Log.i(TAG, "OnActivityResult")
+            }
+            else -> {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
         }
     }
 

@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProviders
 import com.example.android.pilgrim.R
-import com.example.android.pilgrim.model.pojo.VendorPreview
+import com.example.android.pilgrim.model.pojo.Vendor
 
 class VendorDetailsActivity : AppCompatActivity() {
+    private lateinit var viewModel: VendorDetailsViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +20,12 @@ class VendorDetailsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
-        val vendor: VendorPreview = intent.extras.get("vendor") as VendorPreview
+        viewModel = ViewModelProviders.of(this).get(VendorDetailsViewModel::class.java)
+
+        //TODO does intent has all of the vendor data?
+
+
+        val vendor = intent.extras.get("vendor") as Vendor
         this.title = vendor.name
     }
 

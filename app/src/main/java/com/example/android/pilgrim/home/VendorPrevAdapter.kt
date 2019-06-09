@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android.pilgrim.R
-import com.example.android.pilgrim.model.pojo.VendorPreview
+import com.example.android.pilgrim.model.pojo.Vendor
 import kotlinx.android.synthetic.main.item_view_vendor_prev.view.*
 
 /**
  * Created by Toka on 2019-06-02.
  */
 class VendorPrevAdapter constructor(
-    val vendors: ArrayList<VendorPreview>,
+    val vendors: ArrayList<Vendor>,
     val context: Context?,
-    val clickListener: (VendorPreview, Int) -> Unit
+    val clickListener: (Vendor, Int) -> Unit
 ) :
     RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,7 +45,6 @@ class VendorPrevAdapter constructor(
         }
 
         holder?.itemView?.setOnClickListener { clickListener(vendors.get(position), position) }
-
     }
 }
 
@@ -54,5 +53,5 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val distance = view.tv_distance
     val ratingBar = view.rb_rating
     val type = view.tv_type
-    val logo = view.iv_logo
+    val logo = view.iv_vendor_logo
 }

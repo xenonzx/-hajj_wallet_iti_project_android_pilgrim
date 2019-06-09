@@ -40,8 +40,8 @@ class SignInActivity : AppCompatActivity() {
         if (sharedPreference == null) {
 
         } else {
-            val text = sharedPreference.getString("username", "username")
-            val pass = sharedPreference.getString("password", "password")
+            val text = sharedPreference.getString("username", "")
+            val pass = sharedPreference.getString("password", "")
 
             Log.i("hello", "your username is  is $text")
             Log.i("hello", "your username is  is $pass")

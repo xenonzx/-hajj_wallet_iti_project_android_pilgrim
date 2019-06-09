@@ -60,5 +60,8 @@ dependencies {
     //Rating bar
     implementation 'com.iarcuschin:simpleratingbar:0.1.5'
 
+    //QR scanner
+    implementation 'com.journeyapps:zxing-android-embedded:3.3.0@aar'
+    implementation 'com.google.zxing:core:3.2.1'
 
 }

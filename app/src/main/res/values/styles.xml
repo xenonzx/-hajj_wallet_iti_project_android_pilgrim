@@ -20,8 +20,7 @@
     </style>
 
     <style name="editTextField">
-        android:layout_width="283dp"
-        android:layout_height="48dp"
+
         <item name="android:layout_width">283dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:ems">10</item>
@@ -57,15 +56,15 @@
         <item name="android:padding">10dp</item>
         <item name="android:textSize">14sp</item>
         <item name="android:inputType">textEmailAddress</item>
+        <item name="android:background">@drawable/form_inputs</item>
         <!--   <item name="android:layout_marginEnd">8dp</item>
            <item name="android:layout_marginStart">8dp</item>
            <item name="android:layout_marginTop">72dp</item>-->
     </style>
     <style name="subBackgroundStyle">
-        <!--        <item name="android:layout_width">wrap_content</item>
-                <item name="android:layout_height">wrap_content</item>-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">15dp</item>
-        <item name="android:background">@drawable/sub_bg</item>
     </style>
     <style name="progressBarStyle">
         <item name="android:layout_width">wrap_content</item>
@@ -77,30 +76,32 @@
         <item name="android:layout_height">wrap_content</item>
         <!--        <item name="android:layout_marginEnd">8dp</item>
                 <item name="android:layout_marginRight">8dp</item>
-                <item name="android:layout_marginLeft">8dp</item>
+                <item name="android:layout_marginLeftlayout_marginLeft">8dp</item>
                 <item name="android:layout_marginStart">8dp</item>
                 <item name="android:layout_marginTop">44dp</item>-->
     </style>
-    <style name="btnStyle">
+    <style name="primary_btn_style">
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">16sp</item>
         <item name="android:background">@drawable/btn_background</item>
         <item name="android:textColor">@android:color/white</item>
-        <!--        <item name="android:layout_marginTop">68dp</item>
-                <item name="android:layout_marginBottom">8dp</item>-->
     </style>
+
+    <style name="secondary_btn_style">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/secondary_button</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="registerStyle">
         <item name="android:textSize">18sp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:shadowColor">#0A87F4</item>
-        <item name="android:textColor">#0A87F4</item>
+        <item name="android:textColor">@color/medium_gray</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:layout_marginRight">8dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
     </style>
     <style name="pageTitleStyle">
         <item name="android:layout_width">60dp</item>
@@ -111,5 +112,12 @@
         <item name="android:layout_marginBottom">20dp</item>
         <item name="android:layout_marginTop">8dp</item>
     </style>
+    <style name="card">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:elevation">6dp</item>
+    </style>
+
 
 </resources>
