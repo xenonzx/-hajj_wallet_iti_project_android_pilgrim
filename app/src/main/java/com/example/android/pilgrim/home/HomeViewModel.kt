@@ -3,11 +3,7 @@ package com.example.android.pilgrim.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.pilgrim.model.api.PilgrimApi
 import com.example.android.pilgrim.model.pojo.Vendor
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class HomeViewModel : ViewModel() {
@@ -16,7 +12,7 @@ class HomeViewModel : ViewModel() {
         get() = _vendors
 
     fun getVendors(token: String, category: String, lat: Float, lng: Float, radius: Float) {
-        //TODO stop retrofit when viewmodel is closed
+        /*//TODO stop retrofit when viewmodel is closed
         val authorization = "Token $token"
         PilgrimApi.retrofitService.getNearbyVendors(
             authorization,
@@ -36,6 +32,6 @@ class HomeViewModel : ViewModel() {
                 ) {
                     _vendors.value = response.body()
                 }
-            })
+            })*/
     }
 }

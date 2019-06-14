@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -31,7 +30,7 @@ class SignInActivity : AppCompatActivity() {
         signIn.setOnClickListener {
             if (isUserDataValid()) {
                 signIn.startAnimation()
-                viewModel.signIn(username.text.toString(), password.text.toString())
+                viewModel.signIn(username.text.toString(), password.text.toString(), this)
             }
         }
         signup.setOnClickListener {
@@ -41,24 +40,25 @@ class SignInActivity : AppCompatActivity() {
         viewModel.response.observe(this, Observer { response ->
 
             if (response != null) {
-                if (response.isSuccessful) {
+                if (response.token != null) {
                     if (remember_me.isChecked)
                         cacheUserData()
                     else
                         deCacheUserData()
 
-                    startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
+                    val intent = Intent(this@SignInActivity, HomeActivity::class.java)
+                    intent.putExtra("token", response.token)
+                    intent.putExtra("user", response.user)
+                    startActivity(intent)
                     finish()
                 } else {
                     signIn.revertAnimation()
                     signIn.background = ContextCompat.getDrawable(this, R.drawable.btn_background)
-                    Toast.makeText(this, getString(R.string.wrong_user_data), Toast.LENGTH_SHORT).show()
                 }
             } else {
                 //TODO add internet connection check
                 signIn.revertAnimation()
                 signIn.background = ContextCompat.getDrawable(this, R.drawable.btn_background)
-                Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
             }
         })
     }
