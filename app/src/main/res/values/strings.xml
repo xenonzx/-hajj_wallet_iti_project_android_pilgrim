@@ -39,8 +39,6 @@
 
     <string name="feet_away">feet away</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
 
     <string name="profile">Profile</string>
@@ -53,6 +51,22 @@
     <string name="no_vendor">No such vendor with this QR code</string>
     <string name="wrong_user_data">Wrong username or password</string>
     <string name="required_field">Required field</string>
-    <string name="error">Oops! Something went wrong</string>
+    <string name="password_is_numbers">Password can\'t be only numbers</string>
+    <string name="password_is_short">Password must be at least 8 letters</string>
 
+    <string name="password_doesnt_match">Passwords doesn\'t match</string>
+
+    <string name="error">Oops! Something went wrong</string>
+    <string name="image_error">Can\'t upload the image</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="gender">Gender</string>
+    <string name="phone">Phone</string>
+    <string name="nationality">Nationality</string>
+    <string name="not_valid_email">Not a valid email</string>
+    <string name="uploading">Uploading ...</string>
+    <string name="creating_account">Creating you account ...</string>
 </resources>

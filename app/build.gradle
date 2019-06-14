@@ -4,12 +4,15 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.android.pilgrim"
         minSdkVersion 19
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -67,5 +70,18 @@ dependencies {
     //loading button
     implementation 'br.com.simplepass:loading-button-android:2.1.5'
 
+    //stepper
+    implementation 'com.stepstone.stepper:material-stepper:4.3.1'
+
+    //segmented button
+    implementation 'info.hoang8f:android-segmented:1.0.6'
+
+    //firebase storage
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-storage:17.0.0'
+
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
 
 }

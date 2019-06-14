@@ -1,51 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.android.pilgrim">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.android.pilgrim">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".vendorDetails.VendorDetailsActivity">
-        </activity>
-        <activity android:name=".filter.FilterActivity"
-                  android:label="@string/title_activity_filter"
-        >
-        </activity>
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".nationality.NationalityActivity"></activity>
+        <activity android:name=".vendorDetails.VendorDetailsActivity"></activity>
         <activity
-                android:name=".home.HomeActivity"
-                android:label="@string/title_activity_home"
-                android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".onBoarding.OnBoardingActivity">
-        </activity>
-        <activity android:name=".signUp.SignUpActivity">
-        </activity>
-        <activity android:name=".signIn.SignInActivity">
-
-        </activity>
+            android:name=".filter.FilterActivity"
+            android:label="@string/title_activity_filter"></activity>
+        <activity
+            android:name=".home.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".onBoarding.OnBoardingActivity"></activity>
+        <activity android:name=".signUp.SignUpActivity"></activity>
+        <activity android:name=".signIn.SignInActivity"></activity>
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity">
-        </activity>
-
-        <!-- for QR scanner -->
+        <activity android:name=".MainActivity"></activity> <!-- for QR scanner -->
         <activity
-                android:name="com.journeyapps.barcodescanner.CaptureActivity"
-                android:screenOrientation="portrait"
-                tools:replace="android:screenOrientation"
-                android:stateNotNeeded="true"/>
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            tools:replace="android:screenOrientation" />
     </application>
 
 </manifest>

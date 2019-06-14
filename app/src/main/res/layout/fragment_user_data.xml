@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".signUp.AccountDataFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/avatar_placeholder"
+        app:civ_border_color="@color/darkBlue"
+        app:civ_border_width="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
+
+
+    <ImageButton
+        android:id="@+id/btn_choose_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/secondary_button"
+        android:padding="8dp"
+        android:src="@drawable/ic_file_upload"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
+        app:layout_constraintEnd_toEndOf="@+id/image"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="@+id/image"
+        app:layout_constraintTop_toTopOf="@+id/image"
+        app:layout_constraintVertical_bias="0.92" />
+
+    <EditText
+        android:id="@+id/first_name"
+        style="@style/InputTextField"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/email"
+        android:hint="@string/first_name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <EditText
+        android:id="@+id/last_name"
+        style="@style/InputTextField"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/email"
+        android:hint="@string/last_name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_name" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/gender"
+        android:textColor="@color/dark_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_name" />
+
+
+    <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/segmented"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        segmentedgroup:layout_constraintEnd_toEndOf="parent"
+        segmentedgroup:layout_constraintStart_toStartOf="parent"
+        segmentedgroup:layout_constraintTop_toBottomOf="@+id/textView"
+        segmentedgroup:sc_border_width="2dp"
+        segmentedgroup:sc_checked_text_color="@color/white"
+        segmentedgroup:sc_corner_radius="6dp"
+        segmentedgroup:sc_tint_color="@color/darkBlue">
+
+        <RadioButton
+            android:id="@+id/male_radio_button"
+            style="@style/RadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/male" />
+
+        <RadioButton
+            android:id="@+id/female_radio_button"
+            style="@style/RadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/female" />
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
+    <EditText
+        android:id="@+id/phone"
+        style="@style/InputTextField"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/email"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/segmented" />
+
+    <TextView
+        android:id="@+id/tv_nationality"
+        style="@style/InputTextField"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/email"
+        android:hint="@string/nationality"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

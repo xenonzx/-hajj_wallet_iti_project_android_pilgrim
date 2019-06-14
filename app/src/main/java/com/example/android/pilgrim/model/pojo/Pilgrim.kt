@@ -7,12 +7,15 @@ import java.io.Serializable
  * Created by Toka on 2019-06-09.
  */
 data class Pilgrim(
-    val username: String,
-    val password: String,
-    @Json(name = "first_name") val firstName: String,
-    @Json(name = "last_name") val lastName: String,
-    val gender: String,
-    @Json(name = "phone_number") val phoneNumber: Int?,
-    val image: String?,
-    val nationality: String
+    var username: String?,
+    var email: String?,
+    var password1: String?,
+    var password2: String?,
+    var password: String?,
+    @Json(name = "first_name") var firstName: String?,
+    @Json(name = "last_name") var lastName: String?,
+    var gender: String?,
+    @Json(name = "phone_number") var phoneNumber: Int?,
+    var image: String?,
+    var nationality: String?
 ) : Serializable

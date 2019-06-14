@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.android.pilgrim.R
 import com.example.android.pilgrim.filter.FilterActivity
+import com.example.android.pilgrim.model.pojo.Pilgrim
 import com.example.android.pilgrim.profile.ProfileFragment
 import com.example.android.pilgrim.qrScanner.QrScannerFragment
 import com.google.android.material.navigation.NavigationView
@@ -41,7 +42,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         navView.setNavigationItemSelectedListener(this)
 
-        Log.i(TAG, "oncreate")
+
+        val intent = intent
+        val token = intent.getStringExtra("token")
+        val user = intent.getSerializableExtra("user") as Pilgrim
+        Log.i(TAG, "token ${token}")
+        Log.i(TAG, "user ${user}")
+
 
         var fragment: Fragment = HomeFragment()
         setFragment(fragment, "Home")

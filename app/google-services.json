@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "310605106761",
+    "firebase_url": "https://hajwallet-7829a.firebaseio.com",
+    "project_id": "hajwallet-7829a",
+    "storage_bucket": "hajwallet-7829a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310605106761:android:2ca1391de545c14c",
+        "android_client_info": {
+          "package_name": "com.example.android.pilgrim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310605106761-6pfnkepudo3pmk2kgdo22h5tsun1nfrb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.pilgrim",
+            "certificate_hash": "fc666923344106ae6d3de05548477d6836aa4c69"
+          }
+        },
+        {
+          "client_id": "310605106761-jjg8v6vne11q0ji37pk0j4lqbeiaq6oe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe2Ex3EVpEcayiP3s5H-J_kcwxOqCfdjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310605106761-jjg8v6vne11q0ji37pk0j4lqbeiaq6oe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

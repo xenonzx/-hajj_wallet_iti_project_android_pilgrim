@@ -32,7 +32,7 @@ class SignInActivity : AppCompatActivity() {
                 viewModel.signIn(username.text.toString(), password.text.toString())
             }
         }
-        goToRegister.setOnClickListener {
+        signup.setOnClickListener {
             startActivity(Intent(this@SignInActivity, SignUpActivity::class.java))
         }
 
@@ -85,7 +85,6 @@ class SignInActivity : AppCompatActivity() {
         val preferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         preferences.edit().clear().apply()
     }
-
 
     private fun isUserDataValid(): Boolean {
         return isFieldValid(username) && isFieldValid(password)

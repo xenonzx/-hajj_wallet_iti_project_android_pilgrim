@@ -55,12 +55,12 @@
     <style name="InputTextField" parent="editTextField">
         <item name="android:padding">10dp</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:inputType">textEmailAddress</item>
         <item name="android:background">@drawable/form_inputs</item>
-        <!--   <item name="android:layout_marginEnd">8dp</item>
-           <item name="android:layout_marginStart">8dp</item>
-           <item name="android:layout_marginTop">72dp</item>-->
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
+
+
     <style name="subBackgroundStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -117,7 +117,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:elevation">16dp</item>
-        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_margin">16dp</item>
     </style>
 
 

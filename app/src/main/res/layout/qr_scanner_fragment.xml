@@ -50,7 +50,7 @@
                         android:id="@+id/iv_vendor_logo"
                         app:civ_border_width="2dp"
                         app:civ_border_color="@color/light_gray"
-                        android:src="@drawable/abc"/>
+                    android:src="@drawable/avatar_placeholder" />
 
                 <TextView
                         android:id="@+id/tv_vendor_name"

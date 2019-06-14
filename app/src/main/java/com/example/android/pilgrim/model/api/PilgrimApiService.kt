@@ -3,15 +3,16 @@ package com.example.android.pilgrim.model.api
 /**
  * Created by Toka on 2019-06-09.
  */
+import com.example.android.pilgrim.model.pojo.Pilgrim
+import com.example.android.pilgrim.model.responses.CategoryNationalityResponse
+import com.example.android.pilgrim.model.responses.PilgrimRegisterResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 private const val BASE_URL = "https://hajwallet.herokuapp.com"
 
@@ -33,6 +34,12 @@ interface PilgrimApiService {
         @Field("password") password: String
     ): Call<ResponseBody>
 
+
+    @POST("pilgrims/registration/pilgrims_register")
+    fun signUp(@Body pilgrim: Pilgrim): Call<PilgrimRegisterResponse>
+
+    @GET("accounts/nationalities")
+    fun getNationalities(): Call<List<CategoryNationalityResponse>>
 }
 
 object PilgrimApi {
