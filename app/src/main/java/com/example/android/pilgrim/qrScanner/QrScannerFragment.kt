@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.bumptech.glide.Glide
 import com.example.android.pilgrim.R
 import com.example.android.pilgrim.model.pojo.Vendor
 import com.example.android.pilgrim.vendorDetails.VendorDetailsActivity
@@ -47,12 +46,13 @@ class QrScannerFragment : Fragment() {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
 
-                val vendor: Vendor? = viewModel.getVendor(result.contents)
+                /*val vendor: Vendor? = viewModel.getVendor(result.contents)
                 if (vendor != null)
                     updateView(vendor)
                 else
                     Toast.makeText(context, getString(R.string.no_vendor), Toast.LENGTH_SHORT).show()
                 //TODO change not found behavior
+                */
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
@@ -60,9 +60,9 @@ class QrScannerFragment : Fragment() {
     }
 
     private fun updateView(vendor: Vendor) {
-        tv_vendor_name.text = vendor.name
+        /*tv_vendor_name.text = vendor.name
         tv_vendor_type.text = vendor.type
-        Glide.with(context!!).load(vendor.logoUrl).into(iv_vendor_logo)
+        Glide.with(context!!).load(vendor.logoUrl).into(iv_vendor_logo)*/
 
         layout_vendor_data.setOnClickListener {
             val intent = Intent(context, VendorDetailsActivity::class.java)

@@ -3,21 +3,39 @@ package com.example.android.pilgrim.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.pilgrim.model.api.PilgrimApi
 import com.example.android.pilgrim.model.pojo.Vendor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeViewModel : ViewModel() {
-    private var vendors: MutableLiveData<ArrayList<Vendor>> = MutableLiveData()
+    private val _vendors = MutableLiveData<List<Vendor>>()
+    val vendors: LiveData<List<Vendor>>
+        get() = _vendors
 
-    fun getVendors(): LiveData<ArrayList<Vendor>> {
-        val vendorsList: ArrayList<Vendor> = ArrayList()
-        vendorsList.add(Vendor("j", "l", 1, 51.0, "http://goo.gl/gEgYUd"))
-        vendorsList.add(Vendor("jkklas", "l", 2, 32.0, "http://goo.gl/gEgYUd"))
-        vendorsList.add(Vendor("l;akd", "l", 5, 2.0, "http://goo.gl/gEgYUd"))
-        vendorsList.add(Vendor("j", "l", 1, 51.0, "http://goo.gl/gEgYUd"))
-        vendorsList.add(Vendor("jkklas", "l", 2, 32.0, "http://goo.gl/gEgYUd"))
-        vendorsList.add(Vendor("l;akd", "l", 5, 2.0, "http://goo.gl/gEgYUd"))
-        vendors.value = vendorsList
-        return vendors
+    fun getVendors(token: String, category: String, lat: Float, lng: Float, radius: Float) {
+        //TODO stop retrofit when viewmodel is closed
+        val authorization = "Token $token"
+        PilgrimApi.retrofitService.getNearbyVendors(
+            authorization,
+            lat.toString(),
+            lng.toString(),
+            category,
+            radius.toString()
+        )
+            .enqueue(object : Callback<List<Vendor>> {
+                override fun onFailure(call: Call<List<Vendor>>, t: Throwable) {
+                    _vendors.value = null
+                }
+
+                override fun onResponse(
+                    call: Call<List<Vendor>>,
+                    response: Response<List<Vendor>>
+                ) {
+                    _vendors.value = response.body()
+                }
+            })
     }
 }

@@ -19,6 +19,8 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SignInActivityViewModel
 
+    //TODO handel server response
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.android.pilgrim.R.layout.activity_sign_in)

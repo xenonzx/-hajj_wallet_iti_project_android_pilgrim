@@ -26,7 +26,7 @@ class VendorDetailsActivity : AppCompatActivity() {
 
 
         val vendor = intent.extras.get("vendor") as Vendor
-        this.title = vendor.name
+        //this.title = vendor.name
     }
 
 

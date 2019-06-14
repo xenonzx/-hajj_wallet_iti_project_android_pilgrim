@@ -24,11 +24,16 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(com.example.android.pilgrim.R.layout.fragment_home, container, false)
 
+        val intent = activity?.intent
+        val token = intent?.getStringExtra("token")
+
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
         view.rv_vendor_prev.layoutManager = LinearLayoutManager(context)
 
-        viewModel.getVendors().observe(this, Observer { vendors ->
+        viewModel.getVendors(token!!, "1", 45.0f, 50.0f, 100f)
+
+        viewModel.vendors.observe(this, Observer { vendors ->
             mAdapter = VendorPrevAdapter(vendors, context) { vendor: Vendor, position: Int ->
                 val intent = Intent(context, VendorDetailsActivity::class.java)
                 intent.putExtra("vendor", vendor)
