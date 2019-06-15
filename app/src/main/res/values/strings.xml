@@ -69,4 +69,5 @@
     <string name="not_valid_email">Not a valid email</string>
     <string name="uploading">Uploading ...</string>
     <string name="creating_account">Creating you account ...</string>
+    <string name="no_vendors_yet">No vendors around you yet</string>
 </resources>

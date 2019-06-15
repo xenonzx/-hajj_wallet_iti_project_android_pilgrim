@@ -3,7 +3,9 @@ package com.example.android.pilgrim.model.api
 /**
  * Created by Toka on 2019-06-09.
  */
+import com.example.android.pilgrim.model.FindNearestVendorsRequest
 import com.example.android.pilgrim.model.pojo.Pilgrim
+import com.example.android.pilgrim.model.pojo.Vendor
 import com.example.android.pilgrim.model.responses.CategoryNationalityResponse
 import com.example.android.pilgrim.model.responses.PilgrimRegisterResponse
 import com.squareup.moshi.Moshi
@@ -39,6 +41,20 @@ interface PilgrimApiService {
 
     @GET("accounts/nationalities")
     fun getNationalities(): Call<List<CategoryNationalityResponse>>
+
+
+    @POST("/search/nearest_vendors")
+    fun getNearbyVendors(
+        @Header("Authorization") authorization: String,
+        @Body request: FindNearestVendorsRequest
+    ): Call<List<Vendor>>
+
+
+    @FormUrlEncoded
+    @POST("/vendors/find")
+    fun searchForVendor(
+        @Field("search_word") searchWord: String
+    ): Call<List<Vendor>>
 
 }
 

@@ -2,15 +2,18 @@ package com.example.android.pilgrim.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.pilgrim.R
+import com.example.android.pilgrim.filter.FilterActivity
+import com.example.android.pilgrim.model.FindNearestVendorsRequest
 import com.example.android.pilgrim.model.pojo.Vendor
 import com.example.android.pilgrim.vendorDetails.VendorDetailsActivity
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
@@ -18,31 +21,92 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
 
+    private var token: String? = null
+
+    private lateinit var rootView: View
+    val FILTER_REQUEST_CODE = 1
+
+
+    //TODO send real lat long
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(com.example.android.pilgrim.R.layout.fragment_home, container, false)
+        rootView =
+            inflater.inflate(com.example.android.pilgrim.R.layout.fragment_home, container, false)
 
         val intent = activity?.intent
-        val token = intent?.getStringExtra("token")
+        token = intent?.getStringExtra("token")
 
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
-        view.rv_vendor_prev.layoutManager = LinearLayoutManager(context)
+        rootView.rv_vendor_prev.layoutManager = LinearLayoutManager(context)
 
-        viewModel.getVendors(token!!, "1", 45.0f, 50.0f, 100f)
+        setHasOptionsMenu(true)
+
+        return rootView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        progress_bar.visibility = View.VISIBLE
+
+        viewModel.getVendors(
+            "Token $token",
+            FindNearestVendorsRequest(50.0f.toString(), 45.0f.toString(), "1", 100f.toString())
+        )
 
         viewModel.vendors.observe(this, Observer { vendors ->
-            mAdapter = VendorPrevAdapter(vendors, context) { vendor: Vendor, position: Int ->
-                val intent = Intent(context, VendorDetailsActivity::class.java)
-                intent.putExtra("vendor", vendor)
-                startActivity(intent)
+
+            if (vendors != null) {
+                if (vendors.size > 0) {
+                    mAdapter = VendorPrevAdapter(vendors, context) { vendor: Vendor ->
+                        val intent = Intent(context, VendorDetailsActivity::class.java)
+                        intent.putExtra("vendor", vendor)
+                        startActivity(intent)
+                    }
+                    rootView.rv_vendor_prev.adapter = mAdapter
+                } else {
+                    tv_no_vendors.visibility = View.VISIBLE
+                }
+            } else {
+                Toast.makeText(context, getString(R.string.error), Toast.LENGTH_SHORT).show()
             }
-            view.rv_vendor_prev.adapter = mAdapter
+
+            progress_bar.visibility = View.INVISIBLE
+
         })
 
-        return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.home, menu)
+
+        /*val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu.findItem(com.example.android.pilgrim.R.id.action_search)
+            .getActionView() as SearchView
+        searchView.setSearchableInfo(
+            searchManager
+                .getSearchableInfo(componentName)
+        )*/
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_search -> true
+            R.id.action_filter -> {
+                startActivityForResult(
+                    Intent(context, FilterActivity::class.java),
+                    FILTER_REQUEST_CODE
+                )
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }
