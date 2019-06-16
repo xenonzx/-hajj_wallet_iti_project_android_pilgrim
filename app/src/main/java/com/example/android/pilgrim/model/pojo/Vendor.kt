@@ -21,5 +21,6 @@ data class Vendor(
     val category: String,
     val image: String,
     val lat: String,
-    val long: String
+    val long: String,
+    val distance: String
 ) : Serializable

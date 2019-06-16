@@ -34,13 +34,16 @@ class VendorPrevAdapter constructor(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.name?.text = vendors.get(position).username
-        /*holder?.distance?.text =
-            vendors.get(position).distance.toString() + " " + context?.getString(R.string.feet_away)*/
-        holder?.type?.text = vendors.get(position).category
-        //holder?.ratingBar?.rating = vendors.get(position).rating.toFloat()
 
-        if (context != null && vendors.get(position).image != null) {
+        var distance = (vendors.get(position).distance.toDouble() * 100 * 1000)
+        distance = String.format("%.2f", distance).toDouble()
+
+        holder?.name?.text = vendors.get(position).username
+        holder?.distance?.text = distance.toString() + " " + context?.getString(R.string.metre)
+
+        holder?.type?.text = vendors.get(position).category
+
+        if (context != null && !vendors.get(position).image.isEmpty()) {
             Glide.with(context).load(vendors.get(position).image).into(holder?.logo)
         }
 

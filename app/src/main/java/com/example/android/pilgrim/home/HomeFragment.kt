@@ -26,6 +26,9 @@ class HomeFragment : Fragment() {
     private lateinit var rootView: View
     val FILTER_REQUEST_CODE = 1
 
+    private var filter: Int? = 0
+
+    val TAG = "HomeFragment"
 
     //TODO send real lat long
 
@@ -53,11 +56,6 @@ class HomeFragment : Fragment() {
 
         progress_bar.visibility = View.VISIBLE
 
-        viewModel.getVendors(
-            "Token $token",
-            FindNearestVendorsRequest(50.0f.toString(), 45.0f.toString(), "1", 100f.toString())
-        )
-
         viewModel.vendors.observe(this, Observer { vendors ->
 
             if (vendors != null) {
@@ -78,8 +76,22 @@ class HomeFragment : Fragment() {
             progress_bar.visibility = View.INVISIBLE
 
         })
-
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        viewModel.getVendors(
+            "Token $token",
+            FindNearestVendorsRequest(
+                50.0001f.toString(),
+                45.0001f.toString(),
+                filter.toString(),
+                1000f.toString()
+            )
+        )
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -99,13 +111,28 @@ class HomeFragment : Fragment() {
         return when (item.itemId) {
             R.id.action_search -> true
             R.id.action_filter -> {
+                val intent = Intent(context, FilterActivity::class.java)
+                intent.putExtra("ChosenFilter", filter)
+
                 startActivityForResult(
-                    Intent(context, FilterActivity::class.java),
+                    intent,
                     FILTER_REQUEST_CODE
                 )
                 return true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            FILTER_REQUEST_CODE -> {
+                if (data != null) {
+                    filter = data.extras.getInt("filter", 0)
+                }
+            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 

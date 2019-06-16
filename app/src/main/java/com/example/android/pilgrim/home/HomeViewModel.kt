@@ -1,5 +1,6 @@
 package com.example.android.pilgrim.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ class HomeViewModel : ViewModel() {
 
     fun getVendors(authorization: String, request: FindNearestVendorsRequest) {
         //TODO stop retrofit when viewmodel is closed
+        Log.i("ViewModel", "Filter ${request.category}")
         PilgrimApi.retrofitService.getNearbyVendors(
             authorization,
             request

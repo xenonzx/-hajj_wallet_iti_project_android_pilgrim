@@ -56,6 +56,9 @@ interface PilgrimApiService {
         @Field("search_word") searchWord: String
     ): Call<List<Vendor>>
 
+    @GET("/vendors/categories")
+    fun getCategories(): Call<List<CategoryNationalityResponse>>
+
 }
 
 object PilgrimApi {
