@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.example.android.pilgrim.R
 import com.example.android.pilgrim.model.pojo.Vendor
+import com.example.android.pilgrim.utils.Validation
 import com.example.android.pilgrim.vendorDetails.VendorDetailsActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.qr_scanner_fragment.*
@@ -21,19 +24,33 @@ class QrScannerFragment : Fragment() {
     val TAG = "QrScannerFragment"
     private lateinit var viewModel: QrScannerViewModel
 
+
+    private var token: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(this).get(QrScannerViewModel::class.java)
+
+
+        val intent = activity?.intent
+        token = intent?.getStringExtra("token")
+
         startQRScanner()
-        return inflater.inflate(com.example.android.pilgrim.R.layout.qr_scanner_fragment, container, false)
+
+        return inflater.inflate(
+            com.example.android.pilgrim.R.layout.qr_scanner_fragment,
+            container,
+            false
+        )
     }
 
     private fun startQRScanner() {
         val intentIntegrator = IntentIntegrator.forSupportFragment(this@QrScannerFragment)
 
-        intentIntegrator.setPrompt(getString(R.string.scan_vendor_qr)).setOrientationLocked(true).setBeepEnabled(true)
+        intentIntegrator.setPrompt(getString(R.string.scan_vendor_qr)).setOrientationLocked(true)
+            .setBeepEnabled(true)
             .initiateScan()
     }
 
@@ -45,14 +62,15 @@ class QrScannerFragment : Fragment() {
             if (result.contents == null) {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
+                viewModel.getVendor("Token " + token, result.contents, context!!)
 
-                /*val vendor: Vendor? = viewModel.getVendor(result.contents)
-                if (vendor != null)
-                    updateView(vendor)
-                else
-                    Toast.makeText(context, getString(R.string.no_vendor), Toast.LENGTH_SHORT).show()
-                //TODO change not found behavior
-                */
+                viewModel.vendor.observe(this, Observer { vendor ->
+                    progress_bar.visibility = View.INVISIBLE
+                    if (vendor != null) {
+                        layout_store_data.visibility = View.VISIBLE
+                        updateView(vendor)
+                    }
+                })
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
@@ -60,9 +78,9 @@ class QrScannerFragment : Fragment() {
     }
 
     private fun updateView(vendor: Vendor) {
-        /*tv_vendor_name.text = vendor.name
-        tv_vendor_type.text = vendor.type
-        Glide.with(context!!).load(vendor.logoUrl).into(iv_vendor_logo)*/
+        tv_vendor_name.text = vendor.storeName
+        tv_vendor_type.text = vendor.category
+        Glide.with(context!!).load(vendor.image).into(iv_vendor_logo)
 
         layout_vendor_data.setOnClickListener {
             val intent = Intent(context, VendorDetailsActivity::class.java)
@@ -71,7 +89,10 @@ class QrScannerFragment : Fragment() {
         }
 
         btn_purchase.setOnClickListener {
-            //TODO
+            if (Validation.isFieldValid(context!!, et_money) &&
+                Validation.isFieldValid(context!!, et_pin)
+            )
+                viewModel.transferMoney()
         }
     }
 

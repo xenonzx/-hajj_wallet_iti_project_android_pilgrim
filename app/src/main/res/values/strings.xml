@@ -71,4 +71,7 @@
     <string name="creating_account">Creating you account ...</string>
     <string name="no_vendors_yet">No vendors around you yet</string>
     <string name="done">Done</string>
+    <string name="amount_of_money_to_be_transfared">Amount of money</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="transfer">Transfer</string>
 </resources>

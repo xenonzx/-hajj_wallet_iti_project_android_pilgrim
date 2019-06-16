@@ -35,7 +35,7 @@ class VendorPrevAdapter constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        var distance = (vendors.get(position).distance.toDouble() * 100 * 1000)
+        var distance = (vendors.get(position).distance!!.toDouble() * 100 * 1000)
         distance = String.format("%.2f", distance).toDouble()
 
         holder?.name?.text = vendors.get(position).username

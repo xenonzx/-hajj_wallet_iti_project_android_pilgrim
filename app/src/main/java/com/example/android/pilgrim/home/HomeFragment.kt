@@ -1,6 +1,7 @@
 package com.example.android.pilgrim.home
 
 import android.content.Intent
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -28,9 +29,12 @@ class HomeFragment : Fragment() {
 
     private var filter: Int? = 0
 
+    private var locationManager: LocationManager? = null
+
     val TAG = "HomeFragment"
 
-    //TODO send real lat long
+    private var lat: Double? = null
+    private var lng: Double? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +60,8 @@ class HomeFragment : Fragment() {
 
         progress_bar.visibility = View.VISIBLE
 
+        //locationManager = context?.getSystemService(LOCATION_SERVICE) as LocationManager?;
+
         viewModel.vendors.observe(this, Observer { vendors ->
 
             if (vendors != null) {
@@ -80,7 +86,21 @@ class HomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        getVendors()
+        /*try {
+            // Request location updates
+            locationManager?.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                600000,
+                1000f,
+                locationListener
+            )
+        } catch (ex: SecurityException) {
+            Log.d(TAG, "Security Exception, no location available");
+        }*/
+    }
 
+    fun getVendors() {
         viewModel.getVendors(
             "Token $token",
             FindNearestVendorsRequest(
@@ -91,7 +111,6 @@ class HomeFragment : Fragment() {
             )
         )
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -136,4 +155,16 @@ class HomeFragment : Fragment() {
         }
     }
 
+    /* private val locationListener: LocationListener = object : LocationListener {
+         override fun onLocationChanged(location: Location) {
+             lat = location.latitude
+             lng = location.longitude
+             getVendors()
+         }
+
+         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+         override fun onProviderEnabled(provider: String) {}
+         override fun onProviderDisabled(provider: String) {}
+     }
+ */
 }

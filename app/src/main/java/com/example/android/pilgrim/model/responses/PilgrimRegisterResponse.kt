@@ -8,6 +8,5 @@ import com.example.android.pilgrim.model.pojo.Pilgrim
 data class PilgrimRegisterResponse(
     val token: String?,
     val user: Pilgrim?,
-    val errors: List<ErrorResponse>?
-) {
-}
+    val errors: List<ErrorArrayResponse>?
+)

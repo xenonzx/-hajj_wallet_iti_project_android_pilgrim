@@ -8,6 +8,7 @@ import com.example.android.pilgrim.model.pojo.Pilgrim
 import com.example.android.pilgrim.model.pojo.Vendor
 import com.example.android.pilgrim.model.responses.CategoryNationalityResponse
 import com.example.android.pilgrim.model.responses.PilgrimRegisterResponse
+import com.example.android.pilgrim.model.responses.ScanQrResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -56,9 +57,27 @@ interface PilgrimApiService {
         @Field("search_word") searchWord: String
     ): Call<List<Vendor>>
 
+
     @GET("/vendors/categories")
     fun getCategories(): Call<List<CategoryNationalityResponse>>
 
+
+    @FormUrlEncoded
+    @POST("/wallet/vendor/scan/")
+    fun getVendorFromQr(
+        @Header("Authorization") authorization: String,
+        @Field("code") code: String
+    ): Call<ScanQrResponse>
+
+    @FormUrlEncoded
+    @POST("/wallet/vendor/pay/")
+    fun payToVendor(
+        @Header("Authorization") authorization: String,
+        @Field("amount") amount: String,
+        @Field("vendor_id") vendor_id: String,
+        @Field("pin_code") pinCode: String,
+        @Field("currency") currency: String
+    ): Call<ScanQrResponse>
 }
 
 object PilgrimApi {
