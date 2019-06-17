@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -38,34 +39,40 @@ class FilterActivity : AppCompatActivity() {
 
         viewModel.response.observe(this, Observer { categories ->
 
-            val allCategories: ArrayList<CategoryNationalityResponse> =
-                ArrayList<CategoryNationalityResponse>()
 
-            allCategories.add(CategoryNationalityResponse("All", 0))
+            if (categories != null) {
+                val allCategories: ArrayList<CategoryNationalityResponse> =
+                    ArrayList<CategoryNationalityResponse>()
 
-            categories.forEach { category ->
-                allCategories.add(category)
-            }
+                allCategories.add(CategoryNationalityResponse("All", 0))
 
-            allCategories.forEach { category ->
-
-                val radioButton = RadioButton(this)
-                radioButton.id = category.id!!
-                radioButton.text = category.name!!
-                radio_group.addView(radioButton)
-            }
-
-            radio_group.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
-                override fun onCheckedChanged(group: RadioGroup, checkedId: Int) {
-                    // checkedId is the RadioButton selected
-                    this@FilterActivity.checkedId = checkedId
-
+                categories.forEach { category ->
+                    allCategories.add(category)
                 }
-            })
 
+                allCategories.forEach { category ->
+
+                    val radioButton = RadioButton(this)
+                    radioButton.id = category.id!!
+                    radioButton.text = category.name!!
+                    radio_group.addView(radioButton)
+                }
+
+                radio_group.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
+                    override fun onCheckedChanged(group: RadioGroup, checkedId: Int) {
+                        // checkedId is the RadioButton selected
+                        this@FilterActivity.checkedId = checkedId
+
+                    }
+                })
+
+                val filter = intent.getIntExtra("ChosenFilter", 0)
+                radio_group.check(filter)
+            } else {
+                Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
+            }
             progress_bar.visibility = View.INVISIBLE
-            val filter = intent.getIntExtra("ChosenFilter", 0)
-            radio_group.check(filter)
+
         })
     }
 

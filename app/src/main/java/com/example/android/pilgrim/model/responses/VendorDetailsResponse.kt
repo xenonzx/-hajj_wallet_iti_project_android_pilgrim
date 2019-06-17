@@ -1,12 +1,11 @@
-package com.example.android.pilgrim.model.pojo
+package com.example.android.pilgrim.model.responses
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 
 /**
- * Created by Toka on 2019-06-08.
+ * Created by Toka on 2019-06-17.
  */
-data class Vendor(
+data class VendorDetailsResponse(
     val id: String?,
     @Json(name = "store_name") val storeName: String,
     val username: String,
@@ -22,5 +21,5 @@ data class Vendor(
     val image: String,
     val lat: String?,
     val long: String?,
-    val distance: String?
-) : Serializable
+    val errors: List<ErrorResponse>?
+)

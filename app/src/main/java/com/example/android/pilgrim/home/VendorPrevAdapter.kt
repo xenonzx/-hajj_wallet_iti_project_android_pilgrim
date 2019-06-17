@@ -38,7 +38,7 @@ class VendorPrevAdapter constructor(
         var distance = (vendors.get(position).distance!!.toDouble() * 100 * 1000)
         distance = String.format("%.2f", distance).toDouble()
 
-        holder?.name?.text = vendors.get(position).username
+        holder?.name?.text = vendors.get(position).storeName
         holder?.distance?.text = distance.toString() + " " + context?.getString(R.string.metre)
 
         holder?.type?.text = vendors.get(position).category

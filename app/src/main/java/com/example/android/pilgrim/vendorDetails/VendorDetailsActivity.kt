@@ -1,12 +1,16 @@
 package com.example.android.pilgrim.vendorDetails
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
-import com.example.android.pilgrim.R
+import com.bumptech.glide.Glide
 import com.example.android.pilgrim.model.pojo.Vendor
+import kotlinx.android.synthetic.main.content_vendor_details.*
+
 
 class VendorDetailsActivity : AppCompatActivity() {
     private lateinit var viewModel: VendorDetailsViewModel
@@ -14,9 +18,9 @@ class VendorDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vendor_details)
+        setContentView(com.example.android.pilgrim.R.layout.activity_vendor_details)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(com.example.android.pilgrim.R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
@@ -26,7 +30,34 @@ class VendorDetailsActivity : AppCompatActivity() {
 
 
         val vendor = intent.extras.get("vendor") as Vendor
-        //this.title = vendor.name
+        if (vendor != null) {
+            store_name.text = vendor.storeName
+            phone_number.text = vendor.phoneNumber
+            category.text = vendor.category
+            if (!vendor.image.isNullOrEmpty()) {
+                Glide.with(this).load(vendor.image).into(image)
+            }
+
+
+            if (vendor.phoneNumber.isNullOrEmpty())
+                callButton.isEnabled = false
+            else {
+                callButton.isEnabled = true
+                callButton.setOnClickListener {
+                    val intent =
+                        Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", vendor.phoneNumber, null))
+                    startActivity(intent)
+                }
+            }
+
+            navigateButton.setOnClickListener {
+                val geoUri =
+                    "http://maps.google.com/maps?q=loc:${vendor.lat},${vendor.long} (${vendor.storeName})"
+
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+                startActivity(intent)
+            }
+        }
     }
 
 

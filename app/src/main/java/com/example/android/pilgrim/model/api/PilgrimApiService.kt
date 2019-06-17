@@ -6,9 +6,7 @@ package com.example.android.pilgrim.model.api
 import com.example.android.pilgrim.model.FindNearestVendorsRequest
 import com.example.android.pilgrim.model.pojo.Pilgrim
 import com.example.android.pilgrim.model.pojo.Vendor
-import com.example.android.pilgrim.model.responses.CategoryNationalityResponse
-import com.example.android.pilgrim.model.responses.PilgrimRegisterResponse
-import com.example.android.pilgrim.model.responses.ScanQrResponse
+import com.example.android.pilgrim.model.responses.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -77,7 +75,14 @@ interface PilgrimApiService {
         @Field("vendor_id") vendor_id: String,
         @Field("pin_code") pinCode: String,
         @Field("currency") currency: String
-    ): Call<ScanQrResponse>
+    ): Call<TransactionResponse>
+
+    @GET("/pilgrims/{vendor_id}")
+    fun getVendorDetails(
+        @Header("Authorization") authorization: String,
+        @Path("vendor_id") vendorId: String
+    ): Call<VendorDetailsResponse>
+
 }
 
 object PilgrimApi {

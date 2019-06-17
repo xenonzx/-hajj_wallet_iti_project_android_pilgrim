@@ -32,6 +32,8 @@ class UserDataFragment : Fragment(), BlockingStep {
     var filePath: Uri? = null
     var nationality: String? = null
 
+    //TODO check if premission granted
+
     val isImageUploaded = MutableLiveData<Boolean>()
 
     override fun onBackClicked(callback: StepperLayout.OnBackClickedCallback?) {

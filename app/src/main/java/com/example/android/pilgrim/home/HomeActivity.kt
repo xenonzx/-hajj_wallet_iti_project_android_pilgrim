@@ -11,11 +11,13 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.example.android.pilgrim.R
 import com.example.android.pilgrim.model.pojo.Pilgrim
 import com.example.android.pilgrim.profile.ProfileFragment
 import com.example.android.pilgrim.qrScanner.QrScannerFragment
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.nav_header_home.view.*
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,6 +43,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+
         navView.setNavigationItemSelectedListener(this)
 
 
@@ -49,6 +52,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val user = intent.getSerializableExtra("user") as Pilgrim
         Log.i(TAG, "token ${token}")
         Log.i(TAG, "user ${user}")
+
+        navView.getHeaderView(0).username.text = user.username
+        navView.getHeaderView(0).email.text = user.email
+
+        if (!user.image.isNullOrEmpty())
+            Glide.with(this).load(user.image).into(navView.getHeaderView(0).imageView)
 
 
         var fragment: Fragment = HomeFragment()

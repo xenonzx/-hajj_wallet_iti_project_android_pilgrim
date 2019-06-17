@@ -1,7 +1,6 @@
 package com.example.android.pilgrim.home
 
 import android.content.Intent
-import android.location.LocationManager
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -14,6 +13,8 @@ import com.example.android.pilgrim.filter.FilterActivity
 import com.example.android.pilgrim.model.FindNearestVendorsRequest
 import com.example.android.pilgrim.model.pojo.Vendor
 import com.example.android.pilgrim.vendorDetails.VendorDetailsActivity
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -29,7 +30,7 @@ class HomeFragment : Fragment() {
 
     private var filter: Int? = 0
 
-    private var locationManager: LocationManager? = null
+    private var mFusedLocationClient: FusedLocationProviderClient? = null
 
     val TAG = "HomeFragment"
 
@@ -42,6 +43,8 @@ class HomeFragment : Fragment() {
     ): View? {
         rootView =
             inflater.inflate(com.example.android.pilgrim.R.layout.fragment_home, container, false)
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
 
         val intent = activity?.intent
         token = intent?.getStringExtra("token")
@@ -65,13 +68,16 @@ class HomeFragment : Fragment() {
         viewModel.vendors.observe(this, Observer { vendors ->
 
             if (vendors != null) {
+                mAdapter = VendorPrevAdapter(vendors, context) { vendor: Vendor ->
+                    val intent = Intent(context, VendorDetailsActivity::class.java)
+                    intent.putExtra("vendor", vendor)
+                    startActivity(intent)
+                }
+                rootView.rv_vendor_prev.adapter = mAdapter
+
                 if (vendors.size > 0) {
-                    mAdapter = VendorPrevAdapter(vendors, context) { vendor: Vendor ->
-                        val intent = Intent(context, VendorDetailsActivity::class.java)
-                        intent.putExtra("vendor", vendor)
-                        startActivity(intent)
-                    }
-                    rootView.rv_vendor_prev.adapter = mAdapter
+                    tv_no_vendors.visibility = View.INVISIBLE
+
                 } else {
                     tv_no_vendors.visibility = View.VISIBLE
                 }

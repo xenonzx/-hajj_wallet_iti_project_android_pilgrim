@@ -74,4 +74,5 @@
     <string name="amount_of_money_to_be_transfared">Amount of money</string>
     <string name="pin_code">Pin Code</string>
     <string name="transfer">Transfer</string>
+    <string name="navigate">Navigate</string>
 </resources>
