@@ -94,4 +94,12 @@
     <string name="create_wallet_successful">Wallet created successfully</string>
     <string name="charge_wallet">Charge Wallet</string>
     <string name="create_wallet">Create Wallet</string>
+    <string name="card_number">Card Number</string>
+    <string name="expire_month">Expire Month</string>
+    <string name="expire_year">Expire Year</string>
+    <string name="cvc">CVC</string>
+    <string name="amount">Amount</string>
+    <string name="charge">Charge</string>
+
+    <string name="charged_succesfully">Charged Successfully</string>
 </resources>

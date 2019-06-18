@@ -23,7 +23,6 @@ class CreateWalletActivity : AppCompatActivity(), StepperLayout.StepperListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_wallet)
 
-
         createWalletbody = CreateWalletBody(
             null, null, null, null, null,
             null, null, null, null, null

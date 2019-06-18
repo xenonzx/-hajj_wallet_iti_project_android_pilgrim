@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.pilgrim.R
+import com.example.android.pilgrim.chargeWallet.ChargeWalletActivity
 import com.example.android.pilgrim.createWallet.CreateWalletActivity
 import kotlinx.android.synthetic.main.fragment_wallet.*
 
@@ -28,10 +29,6 @@ class WalletFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_wallet, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
 
     override fun onStart() {
         super.onStart()
@@ -58,7 +55,9 @@ class WalletFragment : Fragment() {
         }
 
         chargeWalletButton.setOnClickListener {
-
+            val intent = Intent(activity, ChargeWalletActivity::class.java)
+            intent.putExtra("token", token)
+            activity!!.startActivity(intent)
         }
     }
 

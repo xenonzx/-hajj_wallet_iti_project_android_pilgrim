@@ -6,6 +6,7 @@ package com.example.android.pilgrim.model.api
 import com.example.android.pilgrim.model.FindNearestVendorsRequest
 import com.example.android.pilgrim.model.pojo.Pilgrim
 import com.example.android.pilgrim.model.pojo.Vendor
+import com.example.android.pilgrim.model.requests.CardFields
 import com.example.android.pilgrim.model.requests.CreateWalletBody
 import com.example.android.pilgrim.model.responses.*
 import com.squareup.moshi.Moshi
@@ -90,6 +91,10 @@ interface PilgrimApiService {
 
     @POST("/wallet/create/")
     fun createWallet(@Header("Authorization") token: String, @Body createWalletBody: CreateWalletBody):
+            Call<SuccessWalletCreated>
+
+    @POST("/wallet/charge/")
+    fun chargeWallet(@Header("Authorization") token: String, @Body cardFields: CardFields):
             Call<SuccessWalletCreated>
 }
 
