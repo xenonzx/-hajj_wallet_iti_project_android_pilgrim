@@ -83,6 +83,9 @@ interface PilgrimApiService {
         @Path("vendor_id") vendorId: String
     ): Call<VendorDetailsResponse>
 
+    @GET("/wallet/exists")
+    fun getCheckWalletExistence(@Header("Authorization") token: String):
+            Call<walletExistenceResponse>
 }
 
 object PilgrimApi {

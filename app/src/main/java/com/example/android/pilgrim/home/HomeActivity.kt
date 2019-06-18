@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.example.android.pilgrim.R
 import com.example.android.pilgrim.model.pojo.Pilgrim
-import com.example.android.pilgrim.profile.ProfileFragment
 import com.example.android.pilgrim.qrScanner.QrScannerFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_home.view.*
@@ -83,10 +82,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = HomeFragment()
                 tag = "Home"
             }
-            R.id.nav_profile -> {
+            /*R.id.nav_profile -> {
                 fragment = ProfileFragment()
                 tag = "Profile"
-            }
+            }*/
             R.id.nav_qr_scanner -> {
                 fragment = QrScannerFragment()
                 tag = "Qr Scanner"

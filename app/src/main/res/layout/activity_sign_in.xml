@@ -7,109 +7,109 @@
     android:background="@drawable/background_color">
 
     <androidx.cardview.widget.CardView
-            app:cardCornerRadius="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent=".85"
         style="@style/card"
+        app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".85">
 
         <ScrollView
-                android:id="@+id/card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    style="subBackgroundStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:padding="16dp">
+                android:id="@+id/constraintLayout"
+                style="subBackgroundStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:padding="16dp">
 
                 <ImageView
-                        android:id="@+id/logo"
-                        style="@style/logoImageStyle"
+                    android:id="@+id/logo"
+                    style="@style/logoImageStyle"
                     android:src="@drawable/hafezah_logo"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                        android:id="@+id/username"
-                        style="@style/InputTextField"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="16dp"
+                    android:id="@+id/username"
+                    style="@style/InputTextField"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="16dp"
                     android:drawableEnd="@drawable/ic_user"
-                        android:hint="@string/username"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/logo"/>
+                    android:hint="@string/username"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo" />
 
                 <EditText
-                        android:id="@+id/password"
-                        style="@style/InputTextField"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                    android:id="@+id/password"
+                    style="@style/InputTextField"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:drawableEnd="@drawable/ic_lock"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        app:layout_constraintEnd_toEndOf="@+id/username"
-                        app:layout_constraintStart_toStartOf="@+id/username"
-                        app:layout_constraintTop_toBottomOf="@+id/username"/>
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="@+id/username"
+                    app:layout_constraintStart_toStartOf="@+id/username"
+                    app:layout_constraintTop_toBottomOf="@+id/username" />
 
                 <CheckBox
-                        android:id="@+id/remember_me"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/remember_me"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="@+id/password"
-                        app:layout_constraintTop_toBottomOf="@+id/password"/>
+                    android:id="@+id/remember_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/remember_me"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/password"
+                    app:layout_constraintTop_toBottomOf="@+id/password" />
 
                 <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-                        android:id="@+id/signIn"
-                        style="@style/primary_btn_style"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:elevation="5dp"
-                        android:text="@string/login_to_account"
-                        app:layout_constraintEnd_toEndOf="@+id/password"
-                        app:layout_constraintStart_toStartOf="@+id/password"
-                        app:layout_constraintTop_toBottomOf="@+id/remember_me"
-                        app:spinning_bar_width="4dp"
-                        app:spinning_bar_color="@color/white"
-                        app:spinning_bar_padding="4dp"/>
+                    android:id="@+id/signIn"
+                    style="@style/primary_btn_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:elevation="5dp"
+                    android:text="@string/login_to_account"
+                    app:layout_constraintEnd_toEndOf="@+id/password"
+                    app:layout_constraintStart_toStartOf="@+id/password"
+                    app:layout_constraintTop_toBottomOf="@+id/remember_me"
+                    app:spinning_bar_color="@color/white"
+                    app:spinning_bar_padding="4dp"
+                    app:spinning_bar_width="4dp" />
 
                 <TextView
                     android:id="@+id/textView"
-                        style="@style/registerStyle"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/or"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/signIn"/>
+                    style="@style/registerStyle"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/or"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/signIn" />
 
                 <Button
-                        android:id="@+id/signup"
-                        style="@style/secondary_btn_style"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/secondary_button"
-                        android:elevation="5dp"
-                        android:text="@string/login_to_account"
-                        app:layout_constraintEnd_toEndOf="@+id/password"
-                        app:layout_constraintStart_toStartOf="@+id/password"
+                    android:id="@+id/signup"
+                    style="@style/secondary_btn_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/secondary_button"
+                    android:elevation="5dp"
+                    android:text="@string/create_an_account"
+                    app:layout_constraintEnd_toEndOf="@+id/password"
+                    app:layout_constraintStart_toStartOf="@+id/password"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

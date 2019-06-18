@@ -75,4 +75,6 @@
     <string name="pin_code">Pin Code</string>
     <string name="transfer">Transfer</string>
     <string name="navigate">Navigate</string>
+    <string name="your_balance_is">Your Balance is</string>
+    <string name="create_an_account">Create an Account</string>
 </resources>

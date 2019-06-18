@@ -24,8 +24,9 @@ class QrScannerFragment : Fragment() {
     val TAG = "QrScannerFragment"
     private lateinit var viewModel: QrScannerViewModel
 
-
     private var token: String? = null
+
+    private var vendorId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +63,7 @@ class QrScannerFragment : Fragment() {
             if (result.contents == null) {
                 Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
+
                 viewModel.getVendor("Token " + token, result.contents, context!!)
 
                 viewModel.vendor.observe(this, Observer { vendor ->
@@ -69,6 +71,7 @@ class QrScannerFragment : Fragment() {
                     if (vendor != null) {
                         layout_store_data.visibility = View.VISIBLE
                         updateView(vendor)
+                        vendorId = vendor.id
                     }
                 })
             }
@@ -83,17 +86,54 @@ class QrScannerFragment : Fragment() {
         Glide.with(context!!).load(vendor.image).into(iv_vendor_logo)
 
         layout_vendor_data.setOnClickListener {
-            val intent = Intent(context, VendorDetailsActivity::class.java)
-            intent.putExtra("vendor", vendor)
-            startActivity(intent)
+
+            viewModel.getVendorDetails("Token " + token, vendor.id!!)
+
+            viewModel.vendorDetails.observe(this, Observer { vendorDetails ->
+
+                if (vendorDetails != null) {
+                    val intent = Intent(context, VendorDetailsActivity::class.java)
+                    intent.putExtra("vendor", vendorDetails)
+                    startActivity(intent)
+                } else
+                    Toast.makeText(context, getString(R.string.error), Toast.LENGTH_SHORT).show()
+            })
+
         }
 
+        //TODO handel if less than 10 cents
         btn_purchase.setOnClickListener {
             if (Validation.isFieldValid(context!!, et_money) &&
                 Validation.isFieldValid(context!!, et_pin)
-            )
-                viewModel.transferMoney()
+            ) {
+                btn_purchase.startAnimation()
+                viewModel.transferMoney(
+                    "Token " + token,
+                    vendorId!!,
+                    et_money.text.toString(),
+                    et_pin.text.toString(),
+                    "usd"
+                )
+
+                viewModel.transactionResult.observe(this, Observer { result ->
+                    btn_purchase.revertAnimation()
+
+                    if (result == null)
+                        Toast.makeText(
+                            context,
+                            getString(R.string.error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    else
+                        Toast.makeText(
+                            context,
+                            result,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                })
+            }
         }
     }
+
 
 }

@@ -1,7 +1,6 @@
 package com.example.android.pilgrim.qrScanner
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +9,8 @@ import com.example.android.pilgrim.R
 import com.example.android.pilgrim.model.api.PilgrimApi
 import com.example.android.pilgrim.model.pojo.Vendor
 import com.example.android.pilgrim.model.responses.ScanQrResponse
+import com.example.android.pilgrim.model.responses.TransactionResponse
+import com.example.android.pilgrim.model.responses.VendorDetailsResponse
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,9 +21,16 @@ class QrScannerViewModel : ViewModel() {
     val vendor: LiveData<Vendor>
         get() = _vendor
 
+    private val _transactionResult = MutableLiveData<String>()
+    val transactionResult: LiveData<String>
+        get() = _transactionResult
+
+    private val _vendorDetails = MutableLiveData<Vendor>()
+    val vendorDetails: LiveData<Vendor>
+        get() = _vendorDetails
+
 
     fun getVendor(authorization: String, vendorCode: String, context: Context) {
-        Log.i("QR", "token $authorization")
         PilgrimApi.retrofitService.getVendorFromQr(authorization, vendorCode)
             .enqueue(object : Callback<ScanQrResponse> {
                 override fun onFailure(call: Call<ScanQrResponse>, t: Throwable) {
@@ -88,7 +96,73 @@ class QrScannerViewModel : ViewModel() {
             })
     }
 
-    fun transferMoney() {
+    fun transferMoney(
+        authorization: String,
+        vendorId: String,
+        amount: String,
+        pinCode: String,
+        currency: String
+    ) {
+        PilgrimApi.retrofitService.payToVendor(authorization, amount, vendorId, pinCode, currency)
+            .enqueue(object : Callback<TransactionResponse> {
+                override fun onFailure(call: Call<TransactionResponse>, t: Throwable) {
+                    _transactionResult.value = null
+                }
+
+                override fun onResponse(
+                    call: Call<TransactionResponse>,
+                    callResponse: retrofit2.Response<TransactionResponse>
+                ) {
+
+                    if (callResponse.isSuccessful) {
+                        _transactionResult.value = callResponse.body()!!.success
+                    } else {
+                        _transactionResult.value = null
+                    }
+                }
+            })
+    }
+
+    fun getVendorDetails(
+        authorization: String,
+        vendorId: String
+    ) {
+        PilgrimApi.retrofitService.getVendorDetails(authorization, vendorId)
+            .enqueue(object : Callback<VendorDetailsResponse> {
+                override fun onFailure(call: Call<VendorDetailsResponse>, t: Throwable) {
+                    _vendorDetails.value = null
+                }
+
+                override fun onResponse(
+                    call: Call<VendorDetailsResponse>,
+                    callResponse: retrofit2.Response<VendorDetailsResponse>
+                ) {
+
+                    if (callResponse.isSuccessful) {
+                        val body = callResponse.body()!!
+                        _vendorDetails.value = Vendor(
+                            body.id,
+                            body.storeName,
+                            body.username,
+                            body.email,
+                            body.firstName,
+                            body.lastName,
+                            body.nationality,
+                            body.gender,
+                            body.phoneNumber,
+                            body.crn,
+                            body.code,
+                            body.category,
+                            body.image,
+                            body.lat,
+                            body.long,
+                            null
+                        )
+                    } else {
+                        _vendorDetails.value = null
+                    }
+                }
+            })
 
     }
 

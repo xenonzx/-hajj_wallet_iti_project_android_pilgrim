@@ -31,7 +31,7 @@ class VendorDetailsActivity : AppCompatActivity() {
 
         val vendor = intent.extras.get("vendor") as Vendor
         if (vendor != null) {
-            store_name.text = vendor.storeName
+            store_name.text = vendor.username
             phone_number.text = vendor.phoneNumber
             category.text = vendor.category
             if (!vendor.image.isNullOrEmpty()) {
