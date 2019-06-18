@@ -15,18 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".nationality.NationalityActivity"></activity>
-        <activity android:name=".vendorDetails.VendorDetailsActivity"></activity>
+        <activity android:name=".chargeWallet.ChargeWalletActivity"></activity>
+        <activity android:name=".createWallet.CreateWalletActivity" />
+        <activity android:name=".nationality.NationalityActivity" />
+        <activity android:name=".vendorDetails.VendorDetailsActivity" />
         <activity
             android:name=".filter.FilterActivity"
-            android:label="@string/title_activity_filter"></activity>
+            android:label="@string/title_activity_filter" />
         <activity
             android:name=".home.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".onBoarding.OnBoardingActivity"></activity>
-        <activity android:name=".signUp.SignUpActivity"></activity>
-        <activity android:name=".signIn.SignInActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".onBoarding.OnBoardingActivity" />
+        <activity android:name=".signUp.SignUpActivity" />
+        <activity android:name=".signIn.SignInActivity" />
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity> <!-- for QR scanner -->
+        <activity android:name=".MainActivity" /> <!-- for QR scanner -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"

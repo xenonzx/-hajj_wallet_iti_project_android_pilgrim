@@ -77,4 +77,21 @@
     <string name="navigate">Navigate</string>
     <string name="your_balance_is">Your Balance is</string>
     <string name="create_an_account">Create an Account</string>
+    <string name="you_don_t_have_a_wallet_yet">You don\'t have a wallet yet</string>
+    <string name="my_wallet">My Wallet</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="country">Country</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_number">Account Number</string>
+    <string name="routing_number">Routing Number</string>
+    <string name="currency">Currency</string>
+    <string name="ssn_last_numbers">SSN Last Numbers</string>
+    <string name="dob_day">Dob Day</string>
+    <string name="dob_month">Dob Month</string>
+    <string name="dob_year">Dob Year</string>
+    <string name="create_wallet_successful">Wallet created successfully</string>
+    <string name="charge_wallet">Charge Wallet</string>
+    <string name="create_wallet">Create Wallet</string>
 </resources>

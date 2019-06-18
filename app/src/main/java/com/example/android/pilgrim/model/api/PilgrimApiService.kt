@@ -6,6 +6,7 @@ package com.example.android.pilgrim.model.api
 import com.example.android.pilgrim.model.FindNearestVendorsRequest
 import com.example.android.pilgrim.model.pojo.Pilgrim
 import com.example.android.pilgrim.model.pojo.Vendor
+import com.example.android.pilgrim.model.requests.CreateWalletBody
 import com.example.android.pilgrim.model.responses.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -86,6 +87,10 @@ interface PilgrimApiService {
     @GET("/wallet/exists")
     fun getCheckWalletExistence(@Header("Authorization") token: String):
             Call<walletExistenceResponse>
+
+    @POST("/wallet/create/")
+    fun createWallet(@Header("Authorization") token: String, @Body createWalletBody: CreateWalletBody):
+            Call<SuccessWalletCreated>
 }
 
 object PilgrimApi {
