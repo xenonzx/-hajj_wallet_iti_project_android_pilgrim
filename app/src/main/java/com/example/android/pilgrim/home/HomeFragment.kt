@@ -195,11 +195,11 @@ class HomeFragment : Fragment(), GoogleApiClient.ConnectionCallbacks,
 
     override fun onLocationChanged(location: Location) {
 
-        val msg = "Updated Location: " +
+        /*val msg = "Updated Location: " +
                 java.lang.Double.toString(location.latitude) + "," +
                 java.lang.Double.toString(location.longitude)
 
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()*/
         // You can now create a LatLng Object for use with maps
         lat = location.latitude
         lng = location.longitude

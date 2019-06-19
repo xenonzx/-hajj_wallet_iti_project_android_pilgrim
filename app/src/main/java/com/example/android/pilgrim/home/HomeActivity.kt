@@ -16,6 +16,7 @@ import com.example.android.pilgrim.R
 import com.example.android.pilgrim.model.pojo.Pilgrim
 import com.example.android.pilgrim.myWallet.WalletFragment
 import com.example.android.pilgrim.qrScanner.QrScannerFragment
+import com.example.android.pilgrim.transactions.TransactionsFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_home.view.*
 
@@ -86,6 +87,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_wallet -> {
                 fragment = WalletFragment()
                 tag = "My Wallet"
+            }
+
+            R.id.nav_transactions -> {
+                fragment = TransactionsFragment()
+                tag = "Transactions"
             }
             R.id.nav_qr_scanner -> {
                 fragment = QrScannerFragment()

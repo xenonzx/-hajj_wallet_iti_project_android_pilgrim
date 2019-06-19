@@ -77,7 +77,7 @@ interface PilgrimApiService {
         @Field("vendor_id") vendor_id: String,
         @Field("pin_code") pinCode: String,
         @Field("currency") currency: String
-    ): Call<TransactionResponse>
+    ): Call<TransfareRequest>
 
     @GET("/pilgrims/{vendor_id}")
     fun getVendorDetails(
@@ -96,6 +96,11 @@ interface PilgrimApiService {
     @POST("/wallet/charge/")
     fun chargeWallet(@Header("Authorization") token: String, @Body cardFields: CardFields):
             Call<SuccessWalletCreated>
+
+
+    @GET("/pilgrims/transactions")
+    fun getTransactions(@Header("Authorization") token: String):
+            Call<List<TransactionsResponse>>
 }
 
 object PilgrimApi {

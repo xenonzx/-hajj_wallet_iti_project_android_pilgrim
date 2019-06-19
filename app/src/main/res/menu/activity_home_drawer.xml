@@ -19,6 +19,10 @@
             android:title="@string/my_wallet" />
 
         <item
+            android:id="@+id/nav_transactions"
+            android:icon="@drawable/transaction"
+            android:title="@string/transactions" />
+        <item
             android:id="@+id/nav_qr_scanner"
             android:icon="@drawable/ic_qr_code"
             android:title="@string/qr_scanner" />

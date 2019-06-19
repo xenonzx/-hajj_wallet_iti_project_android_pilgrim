@@ -9,7 +9,7 @@ import com.example.android.pilgrim.R
 import com.example.android.pilgrim.model.api.PilgrimApi
 import com.example.android.pilgrim.model.pojo.Vendor
 import com.example.android.pilgrim.model.responses.ScanQrResponse
-import com.example.android.pilgrim.model.responses.TransactionResponse
+import com.example.android.pilgrim.model.responses.TransfareRequest
 import com.example.android.pilgrim.model.responses.VendorDetailsResponse
 import com.google.gson.Gson
 import retrofit2.Call
@@ -104,14 +104,14 @@ class QrScannerViewModel : ViewModel() {
         currency: String
     ) {
         PilgrimApi.retrofitService.payToVendor(authorization, amount, vendorId, pinCode, currency)
-            .enqueue(object : Callback<TransactionResponse> {
-                override fun onFailure(call: Call<TransactionResponse>, t: Throwable) {
+            .enqueue(object : Callback<TransfareRequest> {
+                override fun onFailure(call: Call<TransfareRequest>, t: Throwable) {
                     _transactionResult.value = null
                 }
 
                 override fun onResponse(
-                    call: Call<TransactionResponse>,
-                    callResponse: retrofit2.Response<TransactionResponse>
+                    call: Call<TransfareRequest>,
+                    callResponse: retrofit2.Response<TransfareRequest>
                 ) {
 
                     if (callResponse.isSuccessful) {
