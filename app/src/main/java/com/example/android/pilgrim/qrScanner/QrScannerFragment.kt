@@ -125,12 +125,15 @@ class QrScannerFragment : Fragment() {
                                 getString(R.string.error),
                                 Toast.LENGTH_SHORT
                             ).show()
-                        else
+                        else {
+                            et_money.setText("")
+                            et_pin.setText("")
                             Toast.makeText(
                                 context,
                                 result,
                                 Toast.LENGTH_SHORT
                             ).show()
+                        }
                     })
                 } else
                     et_money.error = getString(R.string.more_than_doller)
