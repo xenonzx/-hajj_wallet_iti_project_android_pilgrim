@@ -28,6 +28,7 @@
                 style="@style/InputTextField"
                 android:hint="@string/card_number"
                 android:inputType="number"
+                android:text="4242424242424242"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,6 +39,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/expire_month"
                 android:inputType="number"
+                android:text="12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_number" />
@@ -48,6 +50,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/expire_year"
                 android:inputType="number"
+                android:text="2020"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/exp_mon" />
@@ -58,6 +61,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/cvc"
                 android:inputType="text"
+                android:text="123"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/exp_year" />
@@ -79,6 +83,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/amount"
                 android:inputType="numberDecimal"
+                android:drawableEnd="@drawable/dollar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -91,6 +96,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/currency"
                 android:inputType="text"
+                android:text="usd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/amount"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -101,6 +107,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/pin_code"
                 android:inputType="numberPassword"
+                android:text="1234"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/currency" />
@@ -117,7 +124,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pin_code" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

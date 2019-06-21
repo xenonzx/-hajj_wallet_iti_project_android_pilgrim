@@ -104,4 +104,5 @@
     <string name="charged_succesfully">Charged Successfully</string>
     <string name="transactions">transactions</string>
     <string name="no_transactions_yet">No transactions yet</string>
+    <string name="more_than_doller">Amount must be more than a dollar</string>
 </resources>

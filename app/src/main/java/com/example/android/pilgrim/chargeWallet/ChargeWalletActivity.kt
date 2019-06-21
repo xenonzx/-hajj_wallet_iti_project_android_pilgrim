@@ -23,18 +23,22 @@ class ChargeWalletActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ChargeWalletViewModel::class.java)
 
         chargeWalletButton.setOnClickListener {
-            chargeWalletButton.startAnimation()
-            viewModel.chargeWallet(
-                CardFields(
-                    card_number.text.toString(),
-                    exp_mon.text.toString(),
-                    exp_year.text.toString(),
-                    cvc.text.toString(),
-                    amount.text.toString(),
-                    currency.text.toString(),
-                    pin_code.text.toString()
-                ), token
-            )
+            val amountToTransfer = amount.text.toString().toFloat()
+            if (amountToTransfer > 0) {
+                chargeWalletButton.startAnimation()
+                viewModel.chargeWallet(
+                    CardFields(
+                        card_number.text.toString(),
+                        exp_mon.text.toString(),
+                        exp_year.text.toString(),
+                        cvc.text.toString(),
+                        (amountToTransfer * 100).toInt().toString(),
+                        currency.text.toString(),
+                        pin_code.text.toString()
+                    ), token
+                )
+            } else
+                amount.error = getString(R.string.more_than_doller)
         }
 
         viewModel.response.observe(this, Observer {

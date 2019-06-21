@@ -15,28 +15,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chargeWallet.ChargeWalletActivity"></activity>
-        <activity android:name=".createWallet.CreateWalletActivity" />
-        <activity android:name=".nationality.NationalityActivity" />
-        <activity android:name=".vendorDetails.VendorDetailsActivity" />
+        <activity
+            android:name=".chargeWallet.ChargeWalletActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".createWallet.CreateWalletActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".nationality.NationalityActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vendorDetails.VendorDetailsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".filter.FilterActivity"
-            android:label="@string/title_activity_filter" />
+            android:configChanges="orientation"
+            android:label="@string/title_activity_filter"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.HomeActivity"
+            android:configChanges="orientation"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".onBoarding.OnBoardingActivity" />
-        <activity android:name=".signUp.SignUpActivity" />
-        <activity android:name=".signIn.SignInActivity" />
-        <activity android:name=".splash.SplashActivity">
+        <activity
+            android:name=".onBoarding.OnBoardingActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".signUp.SignUpActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".signIn.SignInActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" /> <!-- for QR scanner -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"

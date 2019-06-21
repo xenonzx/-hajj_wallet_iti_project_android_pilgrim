@@ -35,7 +35,8 @@ class ChargeWalletViewModel : ViewModel() {
                             _response.value = response.body()!!.success
                         } else
                             _response.value = null
-                    }
+                    } else
+                        _response.value = null
 
                 }
             })

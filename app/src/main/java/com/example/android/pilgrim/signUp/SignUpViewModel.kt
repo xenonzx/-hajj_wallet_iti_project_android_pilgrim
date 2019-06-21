@@ -28,7 +28,6 @@ class SignUpViewModel : ViewModel() {
             .enqueue(object : Callback<PilgrimRegisterResponse> {
                 override fun onFailure(call: Call<PilgrimRegisterResponse>, t: Throwable) {
                     Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
-
                 }
 
                 override fun onResponse(

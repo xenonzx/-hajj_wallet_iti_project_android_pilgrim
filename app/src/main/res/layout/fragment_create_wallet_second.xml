@@ -22,6 +22,7 @@
         android:layout_marginTop="32dp"
         android:hint="@string/dob_day"
         android:inputType="number"
+        android:text="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
@@ -32,6 +33,7 @@
         android:layout_marginTop="16dp"
         android:hint="@string/dob_month"
         android:inputType="number"
+        android:text="11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day" />
@@ -42,6 +44,7 @@
         android:layout_marginTop="16dp"
         android:hint="@string/dob_year"
         android:inputType="number"
+        android:text="1980"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Month" />
@@ -52,6 +55,7 @@
         android:layout_marginTop="16dp"
         android:hint="@string/ssn_last_numbers"
         android:inputType="number"
+        android:text="0001"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/year" />
@@ -65,6 +69,7 @@
         android:drawableEnd="@drawable/ic_lock"
         android:hint="@string/pin_code"
         android:inputType="textPassword"
+        android:text="1234"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ssnLastNumber" />

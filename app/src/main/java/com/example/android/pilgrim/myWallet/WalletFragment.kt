@@ -36,6 +36,7 @@ class WalletFragment : Fragment() {
         val intent = activity?.intent
         val token = intent?.getStringExtra("token")
 
+        progress_bar.visibility = View.VISIBLE
         viewModel = ViewModelProviders.of(this).get(WalletViewModel::class.java)
         viewModel.getResult(token!!)
         viewModel.checkResult.observe(this, Observer {
@@ -45,8 +46,10 @@ class WalletFragment : Fragment() {
             } else {
                 layout_create_wallet.visibility = View.INVISIBLE
                 layout_balance.visibility = View.VISIBLE
-                balanceNumber.text = it.totalBalance.toString()
+                balanceNumber.text = (it.totalBalance / 100.0f).toString() + " $"
             }
+            progress_bar.visibility = View.INVISIBLE
+
         })
         createWallet.setOnClickListener {
             val intent = Intent(activity, CreateWalletActivity::class.java)

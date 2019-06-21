@@ -268,7 +268,7 @@ class HomeFragment : Fragment(), GoogleApiClient.ConnectionCallbacks,
                 lng.toString(),
                 lat.toString(),
                 filter.toString(),
-                100f.toString()
+                1000f.toString()
             )
         )
     }

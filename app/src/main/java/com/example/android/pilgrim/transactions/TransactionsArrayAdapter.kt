@@ -28,7 +28,7 @@ class TransactionsArrayAdapter(
         var date = data.timeStamp.substring(0, 10)
         holder.pilgrimUserName.text = data.pilgrimUsername
         holder.Time.text = date
-        holder.money.text = "$" + data.moneyPaid.toString()
+        holder.money.text = (data.moneyPaid / 100.0).toString() + " $"
     }
 
 

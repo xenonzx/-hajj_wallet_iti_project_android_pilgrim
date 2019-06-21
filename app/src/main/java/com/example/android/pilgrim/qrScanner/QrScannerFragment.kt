@@ -101,36 +101,39 @@ class QrScannerFragment : Fragment() {
 
         }
 
-        //TODO handel if less than 10 cents
         btn_purchase.setOnClickListener {
             if (Validation.isFieldValid(context!!, et_money) &&
                 Validation.isFieldValid(context!!, et_pin)
             ) {
-                btn_purchase.startAnimation()
-                viewModel.transferMoney(
-                    "Token " + token,
-                    vendorId!!,
-                    et_money.text.toString(),
-                    et_pin.text.toString(),
-                    "usd"
-                )
+                val amountOfMoney = et_money.text.toString().toFloat()
+                if (amountOfMoney > 0) {
+                    btn_purchase.startAnimation()
+                    viewModel.transferMoney(
+                        "Token " + token,
+                        vendorId!!,
+                        (amountOfMoney * 100).toInt().toString(),
+                        et_pin.text.toString(),
+                        "usd"
+                    )
 
-                viewModel.transactionResult.observe(this, Observer { result ->
-                    btn_purchase.revertAnimation()
+                    viewModel.transactionResult.observe(this, Observer { result ->
+                        btn_purchase.revertAnimation()
 
-                    if (result == null)
-                        Toast.makeText(
-                            context,
-                            getString(R.string.error),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    else
-                        Toast.makeText(
-                            context,
-                            result,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                })
+                        if (result == null)
+                            Toast.makeText(
+                                context,
+                                getString(R.string.error),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        else
+                            Toast.makeText(
+                                context,
+                                result,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                    })
+                } else
+                    et_money.error = getString(R.string.more_than_doller)
             }
         }
     }
